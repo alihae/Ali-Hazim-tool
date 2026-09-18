@@ -10,7 +10,8 @@ Referer article: [Bypassing Web-Application Firewalls by abusing SSL/TLS](https:
 
 #### Idea
 
-![](pictures/mind.png)
+![](<img width="2560" height="734" alt="mind png" src="https://github.com/user-attachments/assets/49a5bb62-c1d3-4c7f-b24f-e289e1500d1c" />
+)
 
 
 
