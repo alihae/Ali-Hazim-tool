@@ -1,0 +1,39 @@
+name: Sync upstream
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 3 * * *"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Add upstream
+        run: |
+          git remote add upstream https://github.com/LandGrey/abuse-ssl-bypass-waf.git
+          git fetch upstream master
+
+      - name: Create sync branch
+        run: |
+          git checkout upstream-sync
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Sync upstream
+        run: |
+          git merge --no-edit upstream/master
+
+      - name: Push changes
+        run: |
+          git push origin upstream-sync
